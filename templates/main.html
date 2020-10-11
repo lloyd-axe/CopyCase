@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<!-- Wow, another curious fella.... watcha doin here looking at my naked code?
+This is my first ever deployed website don't be too judgy..
+hahahah just contact me if you have questions ;).
+Stay curious, have a great day! -->
+
+<html lang="{lang}" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <meta name="google-site-verification" content="-DRdImj_rCuDi3nUvPnaQQZ2etLwWQiKhV458JrPPW8" />
+        <meta property="og:title" content="CopyCase - Automated Full Case Downloader" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://copycase.herokuapp.com/" />
+        <meta property="og:description" content="CopyCase algorithm will help you find and download full text cases in just a single click."/>
+        <meta property="og:image" content="https://copycase.herokuapp.com/static/images/ccback.jpg" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style_main.css' %}"/>
+        <title>CopyCase</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/ccfavicon2.ico' %}"/>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179976539-1"></script>
+
+        
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-179976539-1');
+        </script>
+    </head>
+    <body>
+        <!--NAVIGATION-->
+        <nav>
+            <div id="nav-c">
+                <div id="nav-placer">
+                    <ul>
+                        <li><a href="#home">HOME</a></li>
+                        <li><a href="#about">ABOUT</a></li>
+                        <li><a href="#dl-section">DOWNLOAD<br>SOFTWARE</a></li>
+                        <li><a href="#contact">CONTACT US</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- ALL THE SECTIONS -->
+        <div id="home">
+            <!-- MAIN CONTENT -->
+            <div id="home-content">
+                <image id='site-logo' src="{%static 'images/cc-logo2.png' %}"/>
+                <div id="loading-text">
+                    <b>An Automated Solution for Scraping Cases.</b>
+                </div>
+                <form id="search-wrap" method="GET" action="{% url 'script' %}">
+                    {% csrf_token %}
+                    <div id="s-wrap">
+                        <div id="sb-bck">
+                            <input id="search-bar" type="text" name="sbox" placeholder="Enter G.R. no., ex: 164457, L-23051, 207354"
+                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter G.R. no., ex: 164457, L-23051, 207354'"/>
+                        </div>
+                        <button id="search-icon" type="submit" value="Submit" name="Submit" onclick="ActionClick()">
+                            <div id="load-btn-text" style="display: block">Find</div>
+                            <div id="loader-icon" style="display: none"><img width="23px" src="{%static 'images/ajax-loader.gif' %}"></div>
+                        </button>
+                    </div>
+                    <div id="chk-wrap">
+                        <div><input type="checkbox" id="lawphil" name="srchk" value="lawphil.net" checked/>
+                        <label for="lawphil">lawphil.net</label></div>
+                        <div><input type="checkbox" id="crob" name="srchk" value="www.chanrobles.com" checked/>
+                        <label for="crob">chanrobles.com</label></div>
+                        <div><input type="checkbox" id="others" name="srnull" value="others" checked/>
+                        <label for="others">Others (Coming Soon)</label></div>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                function ActionClick(){
+                    $('#loader-icon').show();
+                    $('#load-btn-text').hide();
+                    setTimeout(function () {
+                        $('#loader-icon').hide();
+                        $('#load-btn-text').show();
+                    }, 10000);
+                }
+                </script>
+            </div>
+        </div>
+
+        <div id="about">
+            <hr>
+            <h1>ABOUT</h1>
+            <div id="a-cont">
+                <p>
+                    <b style="color:  #b86e2a">CopyCase</b> will help you to find full text cases in a single click of a button.
+                    Our algorithm will match the cases on the internet and automatically writes it on a <b style="color:  #b86e2a">word document</b> file that will
+                    be packaged in a <b style="color:  #b86e2a">zip file.<br></b> A solution to eliminate the very time consuming and agonizing process of manual scraping of the internet
+                    for full cases and copying each word of it. In just a single click, our algorithm can give you any number of cases it can find.
+                </p>
+                <div id="g1-img"></div><br>
+                <center><b>How to Use:</b></center>
+                <p>
+                    Just follow the format shown on the search bar, which is your search items separated by comma’s <b>( , )</b>. Then the site will automatically download a zip file containing your cases in a word document format.
+                    You can click the checkboxes to select your site references.<br>
+                    <br>Our algorithm is only on its infancy so as of now, we only use the most trusted website case sources in
+                    in the Philippines. These are: <b style="color:  #b86e2a"><a style="color:  #b86e2a" href="https://lawphil.net" target="_blank" >lawphil.net</a> &<a style="color:  #b86e2a" href="https://www.chanrobles.com/" target="_blank"> chanrobles.com</a>.</b>
+                    We will add other site sources soon.
+                </p>
+                <div id="s-ex-cont">
+                    <i>Search Example: <b id="s-ex">164457, L-23051, 207354</b></i>
+                </div>
+                <p>
+                    We hope that <b style="color:  #b86e2a">CopyCase</b> can help <b style="color:  #b86e2a">students, lawyers, researchers, or anyone</b> on
+                     the purpose our website aims to accomplish.
+                </p>
+                <br>
+                <p style="font-size: 14px; margin-bottom: 5px;"><i>Disclaimer:</i></p>
+                <p style="font-size: 14px">
+                    <i>CopyCase is an independent project that only uses free developing stuffs because guess what, I'm broke.
+                    <br>I sincerely apologize if the site is sometimes slow or buggy. I am very open to accept constructive criticism or suggestions for improvements.<br>
+                        You can <b><a style="text-decoration: none; color:  #b86e2a" href="#contact">contact us</a></b> for inquiries.
+                        <br><br>Special thanks to Ms. <b style="color:  #b86e2a">Jameil De los Reyes</b> for her contributions as a trusted consultant.
+                    </i>
+                </p>
+                <p style="font-size: 17px">
+                    <b><i>Thank you and have a great day!</i></b>
+                </p>
+            </div>
+            <hr>
+        </div>
+        <!-- DOWNLOAD -->
+        <div id="dl-section">
+            <h1 style="color: white">DOWNLOAD <b style="color: black">OUR</b> SOFTWARE</h1>
+            <div id="dl-cont">
+                <div style="text-align: center; margin: 5px; margin-top:30px;"><b>Download:</b></div>
+                <div id="dl-item"><a href="http://www.mediafire.com/file/nzkhozdsyto3qew/CopyCase_installerv1-0.exe/file">CopyCase v1.0.exe</a></div>
+                <div id="dl-ul"></div>
+                <div id="dl-inf">
+                    <p>You can download our standalone software for more optimized performance.</p>
+                    <p><b>Benefits of using the software:</b></p>
+                    <ul>
+                        <li>Faster Search and Download</li>
+                        <li>Uses Less Data</li>
+                        <li><b>It's Free</b></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- CONTACT US -->
+        <div id="contact">
+            <hr>
+            <h1 style="color: white">CONTACT US</h1>
+            <div id="c-cont">
+                <div id="contact-info">
+
+                    <ul id="cont-info1">
+                        <li><b>Author:</b></li>
+                        <li><b>Email:</b></li>
+                        <li><b>Mobile:</b></li>
+                        <li><b>Patreon:</b></li>
+                    </ul>
+                    <ul id="cont-info2">
+                        <li><a style="color: white; text-decoration: none; font-weight: bold" href="https://www.facebook.com/LNAcha8">Lloyd Acha</a></li>
+                        <li>lloyd.acxe@gmail.com</li>
+                        <li>09394359280</li>
+                        <li><a style="color: white; font-weight: bold" href="https://www.patreon.com/acxe">Click to Support</a></li>
+                    </ul>
+                </div>
+                <ul id="social-links">
+                    <li style="margin:0; font-size: 13px">Share Link:</li>
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://copycase.herokuapp.com/" target="_blank">
+                        <image style="width: 50px; background-color:  white; margin: 5px;" src="{%static 'images/fb-logo.png' %}"/></a></li>
+                    <li><a href="https://twitter.com/home?status=Hi!%20Check%20out%20this%20site%3A%20%0A%40CopyCase%0Ahttp%3A%2F%2Fcopycase.herokuapp.com%2F" target="_blank">
+                        <image style="width: 50px; background-color:  white; margin: 5px;" src="{%static 'images/tw-logo.png' %}"/></a></li>
+                    <li><a href="https://www.linkedin.com/shareArticle?mini=false&url=http://copycase.herokuapp.com&title=Hi%20check%20out%20this%20site!&summary=Hi%20check%20out%20this%20site!&source=http://copycase.herokuapp.com" target="_blank">
+                        <image style="width: 50px; background-color:  white; margin: 5px;" src="{%static 'images/li-logo.png' %}"/></a></li>
+                </ul>
+            </div>
+            <hr style="margin: 0;">
+            <div id="footer">
+                <div id="f-cont">
+                    <div id="credits">
+                        <p>Credits to:</p>
+                        <ul>
+                            <li><a style="color:  white" href="https://lawphil.net" target="_blank" >lawphil.net,</a></li>
+                            <li><a style="color:  white" href="https://www.chanrobles.com" target="_blank">chanrobles.com</a></li>
+                        </ul>
+                    </div>
+                    <div id="signature">
+                        <p>Acxe <sup>&reg;</sup> 2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
